@@ -1,0 +1,119 @@
+/* ============ General Layout ============ */
+.container {
+  max-width: 800px;
+}
+
+h2 {
+  color: #2c1810;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+p {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* ============ Cards ============ */
+.card {
+  border-radius: 16px;
+  border: none;
+  background: #fffaf5;
+}
+
+.card h4 {
+  color: #3c2f2f;
+}
+
+/* ============ Buttons ============ */
+.btn {
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-dark {
+  background-color: #3b2f2f;
+  border-color: #3b2f2f;
+}
+
+.btn-dark:hover {
+  background-color: #2a1f1f;
+}
+
+.btn-outline-dark {
+  border-color: #3b2f2f;
+  color: #3b2f2f;
+}
+
+.btn-outline-dark:hover {
+  background-color: #3b2f2f;
+  color: white;
+}
+
+/* Quick message buttons */
+.btn-outline-secondary {
+  border-color: #b99177;
+  color: #6c4b3f;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #b99177;
+  color: white;
+}
+
+/* ============ Chat Section ============ */
+.input-group input {
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #d6bba3;
+  box-shadow: none;
+}
+
+.input-group .btn-dark {
+  border-radius: 0 10px 10px 0;
+}
+
+.alert {
+  background-color: #fff7ee;
+  color: #5a4638;
+}
+
+/* ============ AI Response Area ============ */
+pre {
+  background-color: #fff;
+  color: #2e2e2e;
+  border-radius: 10px;
+  padding: 1rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 0.95rem;
+  border: 1px solid #e6d4c3;
+}
+
+/* ============ Tips Box ============ */
+.bg-light {
+  background-color: #fff8f2 !important;
+}
+
+.bg-light ul li {
+  color: #5a4638;
+  font-size: 0.95rem;
+}
+
+/* ============ Transitions ============ */
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 576px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+  .btn-group {
+    flex-direction: column;
+  }
+  .btn-group .btn {
+    margin-bottom: 0.5rem;
+  }
+}

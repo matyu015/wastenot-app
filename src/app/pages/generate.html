@@ -1,0 +1,87 @@
+<div class="container py-5">
+
+  <h2 class="text-center mb-3 fw-semibold">Chef AI Assistant 👨‍🍳</h2>
+  <p class="text-center mb-4">
+    Ask Chef AI for cooking guidance or generate a recipe based on your ingredients!
+  </p>
+
+  <!-- Tabs -->
+  <div class="d-flex justify-content-center mb-4">
+    <div class="btn-group">
+      <button class="btn"
+        [ngClass]="tab === 'chat' ? 'btn-dark' : 'btn-outline-dark'"
+        (click)="tab = 'chat'">
+        💬 Chat with Chef AI
+      </button>
+      <button class="btn"
+        [ngClass]="tab === 'manual' ? 'btn-dark' : 'btn-outline-dark'"
+        (click)="tab = 'manual'">
+        📝 Manual Input
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Assistant Section -->
+  <div *ngIf="tab === 'chat'" class="card shadow-sm p-4 mb-5">
+    <h4 class="fw-semibold text-center mb-3">Chat with Chef AI</h4>
+
+    <div class="alert alert-light border rounded">
+      👋 Hi there! I'm Chef AI — your personal cooking assistant.
+      <br> Tell me what ingredients you have or ask for a full recipe idea!
+    </div>
+
+    <div class="input-group mb-3">
+      <input type="text"
+             [(ngModel)]="chatMessage"
+             class="form-control"
+             placeholder="Ask Chef AI something... (e.g., 'Make a recipe with chicken and garlic')">
+      <button class="btn btn-dark" (click)="sendChatMessage()" [disabled]="loadingChat">➤</button>
+    </div>
+
+    <div *ngIf="loadingChat" class="text-center mt-3">⏳ Chef AI is thinking...</div>
+
+    <div *ngIf="chatResponse" class="mt-3 bg-light p-3 rounded border">
+      <strong>Chef AI Response:</strong>
+      <pre class="mt-2">{{ chatResponse }}</pre>
+    </div>
+
+    <div class="mt-3 d-flex flex-wrap gap-2">
+      <button class="btn btn-outline-secondary btn-sm" (click)="setQuickMessage('Make a quick pasta recipe')">🍝 Quick Pasta</button>
+      <button class="btn btn-outline-secondary btn-sm" (click)="setQuickMessage('Healthy vegetarian meal')">🥦 Vegetarian</button>
+      <button class="btn btn-outline-secondary btn-sm" (click)="setQuickMessage('Dinner with chicken and rice')">🍗 Chicken & Rice</button>
+      <button class="btn btn-outline-secondary btn-sm" (click)="setQuickMessage('Easy breakfast ideas')">🍳 Breakfast</button>
+    </div>
+  </div>
+
+  <!-- Manual Input Section -->
+  <div *ngIf="tab === 'manual'" class="card shadow-sm p-4">
+    <h4 class="fw-semibold text-center mb-3">Enter Your Ingredients</h4>
+
+    <div class="mb-4">
+      <textarea [(ngModel)]="ingredients" class="form-control" rows="4"
+        placeholder="e.g. eggs, tomato, onion, garlic, cheese"></textarea>
+    </div>
+
+    <button (click)="generate()" class="btn btn-dark btn-lg w-100" [disabled]="loading">
+      Generate Recipe
+    </button>
+
+    <div *ngIf="loading" class="mt-3 text-center">⏳ Generating your recipe...</div>
+
+    <div *ngIf="result" class="mt-3 bg-light p-3 rounded border">
+      <strong>Chef AI’s Recipe:</strong>
+      <pre class="mt-2">{{ result }}</pre>
+    </div>
+
+    <div class="bg-light border p-3 mt-4 rounded">
+      <strong>💡 Tips for best results:</strong>
+      <ul class="mt-2 mb-0">
+        <li>List your ingredients clearly</li>
+        <li>Add any dietary restrictions</li>
+        <li>Include your preferred cuisine or cooking style</li>
+        <li>Try: “Make a creamy chicken pasta with garlic”</li>
+      </ul>
+    </div>
+  </div>
+
+</div>

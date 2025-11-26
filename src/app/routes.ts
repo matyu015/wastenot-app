@@ -5,6 +5,6 @@ import { SuggestionsComponent } from './pages/suggestions';
 
 export const routes: Routes = [
   { path: '', component: Home },
-  { path: 'generate', loadComponent: () => import('./pages/generate').then(m => m.GenerateComponent) },
-  { path: 'suggestions', loadComponent: () => import('./pages/suggestions').then(m => m.SuggestionsComponent) }
+  { path: 'generate', component: GenerateComponent},
+  { path: 'suggestions', component: SuggestionsComponent },
 ];

@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+/* --- Sidebar animation and styling --- */
+.offcanvas-start {
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar {
+  min-width: 260px;
+  background-color: var(--bs-light);
+}
+
+.sidebar .nav-link {
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateX(3px);
+}
+
+.sidebar .nav-link.active {
+  background-color: #198754;
+  color: white !important;
+}
+
+/* --- Main content scroll & padding --- */
+main {
+  background-color: var(--bs-body-bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Dark mode styles --- */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .navbar,
+body.dark-mode .sidebar {
+  background-color: #1f1f1f !important;
+  border-color: #333 !important;
+}
+
+body.dark-mode .nav-link {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .nav-link.active {
+  background-color: #0d6efd !important;
+}
+
+body.dark-mode main {
+  background-color: #181818;
+}

@@ -1,0 +1,21 @@
+<div class="chat-container">
+
+  <div class="messages">
+    <div *ngFor="let m of messages"
+      class="bubble"
+      [class.me]="m.from === 'user'"
+      [class.bot]="m.from === 'bot'">
+      {{ m.text }}
+    </div>
+
+    <div *ngIf="loading" class="bubble bot">⏳ Thinking...</div>
+  </div>
+
+  <div class="input-wrap">
+    <input [(ngModel)]="userMessage"
+           (keyup.enter)="sendMessage()"
+           placeholder="Type ingredients e.g. eggs, milk, garlic">
+    <button (click)="sendMessage()">Send</button>
+  </div>
+
+</div>
