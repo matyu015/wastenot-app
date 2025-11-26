@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{email} {
+
+      // Allow checking if an email exists
+      allow get: if true;
+
+      // Allow user to create THEIR OWN document
+      allow create: if request.auth != null
+                    && request.auth.token.email.toLowerCase() == email;
+
+      // Allow logged-in user to read/write only their own data
+      allow read, update, delete: if request.auth != null
+                                  && request.auth.token.email.toLowerCase() == email;
+    }
+  }
+}
