@@ -1,34 +1,20 @@
-.landing-container {
-  min-height: calc(100vh - 80px);
-  padding: 40px;
-  animation: fadeSlide 0.8s ease;
+.recipe-card {
+  border-radius: 12px;
+  transition: transform 0.15s ease, box-shadow 0.2s;
 }
 
-.hero-section {
-  max-width: 480px;
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-.auth-card {
-  width: 360px;
-  background: #ffffff;
+.card-title {
+  font-weight: 600;
 }
-
-.fade-in {
-  animation: fadeIn 1s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeSlide {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-button.btn-primary:hover,
-button.btn-success:hover {
-  transform: translateY(-2px);
-  transition: 0.2s;
+.card-description {
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #777;
 }

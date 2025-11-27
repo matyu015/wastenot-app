@@ -1,10 +1,25 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home';
-import { GenerateComponent } from './pages/generate';
-import { SuggestionsComponent } from './pages/suggestions';
+import { authGuard } from './guards/auth.guard';
+import { LandingComponent } from './pages/landing';
 
 export const routes: Routes = [
-  { path: '', component: Home },
-  { path: 'generate', loadComponent: () => import('./pages/generate').then(m => m.GenerateComponent) },
-  { path: 'suggestions', loadComponent: () => import('./pages/suggestions').then(m => m.SuggestionsComponent) }
+  { path: 'auth', component: LandingComponent },
+  { path: 'login', component: LandingComponent },
+
+  { path: '', component: Home, canActivate: [authGuard] },
+
+  { 
+    path: 'generate',
+    loadComponent: () => import('./pages/generate').then(m => m.GenerateComponent),
+    canActivate: [authGuard]
+  },
+
+  { 
+    path: 'suggestions',
+    loadComponent: () => import('./pages/suggestions').then(m => m.SuggestionsComponent),
+    canActivate: [authGuard]
+  },
+
+  { path: '**', redirectTo: 'login' }
 ];

@@ -63,6 +63,10 @@
 
   <!-- Main content area -->
   <main class="flex-fill overflow-auto p-4">
-    <router-outlet></router-outlet>
+  <ng-container *ngIf="showLayout">
+  <!-- your navbar + sidebar -->
+</ng-container>
+
+<router-outlet></router-outlet>
   </main>
 </div>
