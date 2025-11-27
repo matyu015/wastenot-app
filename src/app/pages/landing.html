@@ -1,62 +1,147 @@
-<div class="container py-5">
-  <div class="row align-items-center">
-    <!-- Left: Promo -->
-    <div class="col-lg-6 text-center text-lg-start mb-4">
-      <h1 class="display-4 fw-bold">WasteNot</h1>
-      <p class="lead">Turn your kitchen leftovers into delicious meals. Generate recipes & suggestions in seconds.</p>
-      <ul class="list-unstyled">
-        <li>✅ Save recipes</li>
-        <li>✅ Chef AI assistant</li>
-        <li>✅ Simple, mobile-friendly UI</li>
+<div class="container py-5 landing-wrapper">
+  <div class="row justify-content-center align-items-center">
+
+    <!-- LEFT SIDE MESSAGE -->
+    <div class="col-lg-6 text-center text-lg-start mb-5">
+      <h1 class="display-4 fw-bold mb-3">WasteNot</h1>
+      <p class="lead text-muted mb-4">
+        Turn your leftover ingredients into delicious, AI-generated recipes.
+      </p>
+
+      <ul class="list-unstyled fs-5">
+        <li>🍽️  Smart recipe generator</li>
+        <li>📘  Your personal recipe book</li>
+        <li>🤖  Chef AI cooking assistant</li>
+        <li>📱  Clean, mobile-friendly design</li>
       </ul>
     </div>
 
-    <!-- Right: Login & Register -->
-    <div class="col-lg-6">
-      <div class="card p-4 shadow-sm">
-        <h4 class="mb-3">Log in to WasteNot</h4>
+    <!-- RIGHT SIDE LOGIN CARD -->
+    <div class="col-lg-5">
 
-        <div *ngIf="error" class="alert alert-danger small">{{ error }}</div>
+      <!-- Login Card -->
+      <div class="card p-4 shadow-sm rounded-3">
 
+        <h4 class="mb-3 text-center fw-bold">Login to WasteNot</h4>
+
+        <!-- Error -->
+        <div *ngIf="error" class="alert alert-danger small py-2">{{ error }}</div>
+
+        <!-- EMAIL -->
         <div class="mb-3">
-          <input class="form-control" [(ngModel)]="email" placeholder="Email" type="email"/>
+          <input
+            type="email"
+            class="form-control form-control-lg"
+            placeholder="Email address"
+            [(ngModel)]="email"
+          />
         </div>
+
+        <!-- PASSWORD -->
         <div class="mb-3">
-          <input class="form-control" [(ngModel)]="password" placeholder="Password" type="password"/>
+          <input
+            type="password"
+            class="form-control form-control-lg"
+            placeholder="Password"
+            [(ngModel)]="password"
+          />
+        </div>
+
+        <!-- LOGIN BUTTON -->
+        <button
+          class="btn btn-primary btn-lg w-100"
+          (click)="login()"
+          [disabled]="loading"
+        >
+          {{ loading ? 'Signing in...' : 'Log In' }}
+        </button>
+
+        <div class="text-center mt-3">
+          <a href="#" class="small" (click)="forgotPassword(); $event.preventDefault()">
+            Forgot password?
+          </a>
+        </div>
+
+        <hr class="my-4">
+
+        <!-- CREATE ACCOUNT BUTTON -->
+        <div class="text-center">
+          <button
+            class="btn btn-success btn-lg w-100"
+            (click)="registerMode = true"
+          >
+            Create New Account
+          </button>
+        </div>
+      </div>
+
+      <!-- REGISTER CARD (modal style) -->
+      <div
+        *ngIf="registerMode"
+        class="card p-4 shadow-sm rounded-3 mt-3 fade-in"
+        style="animation: fadeIn 0.25s ease;"
+      >
+        <h5 class="fw-bold text-center mb-3">Create a New Account</h5>
+
+        <!-- EMAIL -->
+        <div class="mb-2">
+          <input
+            class="form-control"
+            placeholder="Email"
+            [(ngModel)]="regEmail"
+            type="email"
+          />
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="mb-2">
+          <input
+            class="form-control"
+            placeholder="Password"
+            type="password"
+            [(ngModel)]="regPassword"
+          />
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="mb-3">
+          <input
+            class="form-control"
+            placeholder="Confirm Password"
+            type="password"
+            [(ngModel)]="regConfirm"
+          />
         </div>
 
         <div class="d-grid gap-2">
-          <button class="btn btn-primary" (click)="login()" [disabled]="loading">
-            {{ loading ? 'Signing in...' : 'Log In' }}
+          <button
+            class="btn btn-success"
+            (click)="register()"
+            [disabled]="loading"
+          >
+            {{ loading ? 'Creating...' : 'Sign Up' }}
           </button>
-          <button class="btn btn-outline-secondary" (click)="registerMode = true">Create new account</button>
-        </div>
 
-        <div class="mt-3 text-center">
-          <a class="small" href="#" (click)="forgotPassword(); $event.preventDefault()">
-            Forgot your password?
-          </a>
+          <button
+            class="btn btn-outline-secondary"
+            (click)="registerMode = false"
+          >
+            Cancel
+          </button>
         </div>
       </div>
 
-      <!-- Register Modal (simple inline card) -->
-      <div *ngIf="registerMode" class="card p-3 mt-3 shadow-sm">
-        <h5>Create account</h5>
-        <div class="mb-2">
-          <input class="form-control" [(ngModel)]="regEmail" placeholder="Email" />
-        </div>
-        <div class="mb-2">
-          <input class="form-control" [(ngModel)]="regPassword" placeholder="Password" type="password" />
-        </div>
-        <div class="mb-2">
-          <input class="form-control" [(ngModel)]="regConfirm" placeholder="Confirm password" type="password" />
-        </div>
-
-        <div class="d-flex gap-2">
-          <button class="btn btn-success" (click)="register()" [disabled]="loading">Create account</button>
-          <button class="btn btn-outline-secondary" (click)="registerMode=false">Cancel</button>
-        </div>
-      </div>
     </div>
   </div>
 </div>
+
+<!-- Simple fade animation -->
+<style>
+  .fade-in {
+    animation: fadeIn 0.25s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
